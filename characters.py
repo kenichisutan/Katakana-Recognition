@@ -1,4 +1,4 @@
-def characterKa():
+def ka():
     ka = [
         0, 1, 0, 0, 0,
         1, 1, 1, 1, 0,
@@ -9,7 +9,7 @@ def characterKa():
     return ka
 
 
-def characterKi():
+def ki():
     ki = [
         0, 0, 1, 0, 0,
         1, 1, 1, 1, 1,
@@ -20,7 +20,7 @@ def characterKi():
     return ki
 
 
-def characterKu():
+def ku():
     ku = [
         0, 1, 0, 0, 0,
         0, 1, 1, 1, 0,
@@ -31,7 +31,7 @@ def characterKu():
     return ku
 
 
-def characterKe():
+def ke():
     ke = [
         0, 1, 0, 0, 0,
         0, 1, 1, 1, 1,
@@ -42,7 +42,7 @@ def characterKe():
     return ke
 
 
-def characterKo():
+def ko():
     ko = [
         0, 0, 0, 0, 0,
         1, 1, 1, 1, 1,
