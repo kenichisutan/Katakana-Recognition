@@ -3,6 +3,14 @@ import characters
 import numpy as np
 import functions as f
 
+print("Testing for Ka character")
+print("Input:")
+print(characters.ka())
+print(characters.ki())
+print(characters.ku())
+print(characters.ke())
+print(characters.ko())
+
 # Create a list of characters and a list of their corresponding labels
 x = [characters.ka(), characters.ki(), characters.ku(),
      characters.ke(), characters.ko()]
@@ -15,7 +23,7 @@ targets = np.array(targets)
 # Define the variables
 inputLayerNeurons, hiddenLayerNeurons, outputLayerNeurons = 25, 5, 1
 learningRate = 0.5
-iterations = 10000
+iterations = 5000
 MSE = [0] * iterations
 
 # Create a list of weights and biases
