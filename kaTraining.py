@@ -22,7 +22,7 @@ targets = np.array(targets)
 
 # Define the variables
 inputLayerNeurons, hiddenLayerNeurons, outputLayerNeurons = 25, 5, 1
-learningRate = 0.5
+learningRate = 1
 iterations = 5000
 MSE = [0] * iterations
 
