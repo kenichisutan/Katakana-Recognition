@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 from functions import characters
 from functions import functions as f
 import numpy as np
+import time
 
 
 print("Training for all characters...")
@@ -69,6 +70,7 @@ biasHidden = np.random.uniform(0, 1, size=hiddenLayerNeurons)
 biasOutput = np.random.uniform(0, 1, size=outputLayerNeurons)
 
 # Training loop
+startTime = time.time()
 for i in range(iterations):
     # For each input
     for j in range(len(targets)):
@@ -88,6 +90,15 @@ for i in range(iterations):
         biasOutput += dOutputError * learningRate
         weightsInputHidden += np.dot(x[j].reshape(inputLayerNeurons, 1), dHiddenError.reshape(1, hiddenLayerNeurons)) * learningRate
         biasHidden += dHiddenError * learningRate
+endTime = time.time()
+print("Training time:", endTime - startTime, "seconds")
+print()
+
+# Error
+print("Error:")
+for i in range(len(x)):
+    print(xNames[i] + ":", MSE[i][iterations - 1])
+print()
 
 # Testing
 test = [characters.ki(), characters.ma(), characters.fu()]
@@ -105,7 +116,8 @@ testTargets = [[0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
 # Print the targets
 print("Targets:")
 for i in range(len(test)):
-    print(xNames[i] + ":", testTargets[i])
+    print(testNames[i] + ":", testTargets[i])
+print()
 
 # Print the results
 for i in range(len(test)):
