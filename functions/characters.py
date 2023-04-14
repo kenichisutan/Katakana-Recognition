@@ -228,15 +228,15 @@ def hi():
     ]
     return hi
 
-def hu():
-    hu = [
+def fu():
+    fu = [
         1, 1, 1, 1, 1,
         0, 0, 0, 0, 1,
         0, 0, 0, 1, 0,
         0, 0, 1, 0, 0,
         1, 1, 0, 0, 0
     ]
-    return hu
+    return fu
 
 def he():
     he = [
