@@ -4,30 +4,44 @@ import numpy as np
 import functions as f
 
 print("Training for all characters...")
-print("Input:")
-print("Ka:", characters.ka())
-print("Ki:", characters.ki())
-print("Ku:", characters.ku())
-print("Ke:", characters.ke())
-print("Ko:", characters.ko())
 
 # Create a list of characters and a list of their corresponding labels
+xNames = ["Ka", "Ki", "Ku", "Ke", "Ko", "Sa", "Shi", "Su", "Se", "So"]
 x = [characters.ka(), characters.ki(), characters.ku(),
-     characters.ke(), characters.ko()]
-targets = [[1, 0, 0, 0, 0], [0, 1, 0, 0, 0], [0, 0, 1, 0, 0], [0, 0, 0, 1, 0], [0, 0, 0, 0, 1]]
+     characters.ke(), characters.ko(), characters.sa(),
+     characters.shi(), characters.su(), characters.se(),
+     characters.so()]
+targets = [[1, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 1, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 1, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 1, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 1, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 1]]
+
+print("Input:")
+print(xNames[0] + ":", x[0])
+print(xNames[1] + ":", x[1])
+print(xNames[2] + ":", x[2])
+print(xNames[3] + ":", x[3])
+print(xNames[4] + ":", x[4])
+print(xNames[5] + ":", x[5])
+print(xNames[6] + ":", x[6])
+print(xNames[7] + ":", x[7])
+print(xNames[8] + ":", x[8])
+print(xNames[9] + ":", x[9])
+print()
 
 # Convert the lists to numpy arrays
 x = np.array(x)
 targets = np.array(targets)
 
 # Define the variables
-inputLayerNeurons, hiddenLayerNeurons, outputLayerNeurons = 25, 20, 5
+inputLayerNeurons, hiddenLayerNeurons, outputLayerNeurons = 25, 20, 10
 learningRate = 1
 iterations = 5000
 
 # MSE per input per iteration
-MSE = [[], [], [], [], []]
+MSE = []
 for i in range(len(x)):
+    MSE.append([])
     MSE[i] = [0] * iterations
 
 # Weights
@@ -64,46 +78,23 @@ for i in range(iterations):
         biasHidden += dHiddenError * learningRate
 
 # Testing
+test = [characters.ka(), characters.ki(), characters.ku(), characters.ke(), characters.ko(),
+        characters.sa(), characters.shi(), characters.su(), characters.se(), characters.so()]
+
+# Print the targets
 print("Targets:")
-print("Ka:", targets[0])
-print("Ki:", targets[1])
-print("Ku:", targets[2])
-print("Ke:", targets[3])
-print("Ko:", targets[4])
-test = [characters.ka(), characters.ki(), characters.ku(), characters.ke(), characters.ko()]
+for i in range(len(test)):
+    print(xNames[i] + ":", targets[i])
 
-hiddenLayers = f.sigmoidEstimation(np.dot(test[0], weightsInputHidden) + biasHidden)
-outputKa = f.sigmoidEstimation(np.dot(hiddenLayers, weightsHiddenOutput) + biasOutput)
-
-print("Result Ka:\n", outputKa)
-
-hiddenLayers = f.sigmoidEstimation(np.dot(test[1], weightsInputHidden) + biasHidden)
-outputKi = f.sigmoidEstimation(np.dot(hiddenLayers, weightsHiddenOutput) + biasOutput)
-
-print("Result Ki:\n", outputKi)
-
-hiddenLayers = f.sigmoidEstimation(np.dot(test[2], weightsInputHidden) + biasHidden)
-outputKu = f.sigmoidEstimation(np.dot(hiddenLayers, weightsHiddenOutput) + biasOutput)
-
-print("Result Ku:\n", outputKu)
-
-hiddenLayers = f.sigmoidEstimation(np.dot(test[3], weightsInputHidden) + biasHidden)
-outputKe = f.sigmoidEstimation(np.dot(hiddenLayers, weightsHiddenOutput) + biasOutput)
-
-print("Result Ke:\n", outputKe)
-
-hiddenLayers = f.sigmoidEstimation(np.dot(test[4], weightsInputHidden) + biasHidden)
-outputKo = f.sigmoidEstimation(np.dot(hiddenLayers, weightsHiddenOutput) + biasOutput)
-
-print("Result Ko:\n", outputKo)
-
+# Print the results
+for i in range(len(test)):
+    hiddenLayers = f.sigmoidEstimation(np.dot(test[i], weightsInputHidden) + biasHidden)
+    output = f.sigmoidEstimation(np.dot(hiddenLayers, weightsHiddenOutput) + biasOutput)
+    print("Result " + xNames[i] + ":\n", output)
 
 # Plotting
-plt.plot(MSE[0], label="Ka")
-plt.plot(MSE[1], label="Ki")
-plt.plot(MSE[2], label="Ku")
-plt.plot(MSE[3], label="Ke")
-plt.plot(MSE[4], label="Ko")
+for i in range(len(MSE)):
+    plt.plot(MSE[i], label=xNames[i])
 
 # Labels
 title = "Learning rate: " + str(learningRate) + ", Iterations: " + str(iterations)
