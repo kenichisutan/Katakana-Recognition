@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
-from functions import characters
 import numpy as np
-import functions as f
+from functions import functions as f, characters
 
 print("Training for all characters...")
 print("Input:")

@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-import characters
+from functions import characters
 import numpy as np
 import functions as f
 

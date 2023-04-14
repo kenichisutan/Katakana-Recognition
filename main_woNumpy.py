@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-import characters
+from functions import characters
 import random
 import functions as f
 
