@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 from functions import characters
+from functions import functions as f
 import random
-import functions as f
 
 print("Training for all characters...")
 print("Input:")

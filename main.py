@@ -1,7 +1,8 @@
 import matplotlib.pyplot as plt
 from functions import characters
+from functions import functions as f
 import numpy as np
-import functions as f
+
 
 print("Training for all characters...")
 
@@ -17,16 +18,8 @@ targets = [[1, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 1, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 1]]
 
 print("Input:")
-print(xNames[0] + ":", x[0])
-print(xNames[1] + ":", x[1])
-print(xNames[2] + ":", x[2])
-print(xNames[3] + ":", x[3])
-print(xNames[4] + ":", x[4])
-print(xNames[5] + ":", x[5])
-print(xNames[6] + ":", x[6])
-print(xNames[7] + ":", x[7])
-print(xNames[8] + ":", x[8])
-print(xNames[9] + ":", x[9])
+for i in range(len(x)):
+    print(xNames[i] + ":", x[i])
 print()
 
 # Convert the lists to numpy arrays
@@ -35,7 +28,7 @@ targets = np.array(targets)
 
 # Define the variables
 inputLayerNeurons, hiddenLayerNeurons, outputLayerNeurons = 25, 20, 10
-learningRate = 1
+learningRate = 0.5
 iterations = 5000
 
 # MSE per input per iteration

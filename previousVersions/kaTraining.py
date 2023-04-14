@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 from functions import characters
+from functions import functions as f
 import numpy as np
-import functions as f
 
 print("Testing for Ka character")
 print("Input:")
