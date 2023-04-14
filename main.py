@@ -78,82 +78,23 @@ for i in range(iterations):
         biasHidden += dHiddenError * learningRate
 
 # Testing
-print("Targets:")
-print("Ka:", targets[0])
-print("Ki:", targets[1])
-print("Ku:", targets[2])
-print("Ke:", targets[3])
-print("Ko:", targets[4])
-print("Sa:", targets[5])
-print("Shi:", targets[6])
-print("Su:", targets[7])
-print("Se:", targets[8])
-print("So:", targets[9])
 test = [characters.ka(), characters.ki(), characters.ku(), characters.ke(), characters.ko(),
         characters.sa(), characters.shi(), characters.su(), characters.se(), characters.so()]
 
-hiddenLayers = f.sigmoidEstimation(np.dot(test[0], weightsInputHidden) + biasHidden)
-outputKa = f.sigmoidEstimation(np.dot(hiddenLayers, weightsHiddenOutput) + biasOutput)
+# Print the targets
+print("Targets:")
+for i in range(len(test)):
+    print(xNames[i] + ":", targets[i])
 
-print("Result Ka:\n", outputKa)
-
-hiddenLayers = f.sigmoidEstimation(np.dot(test[1], weightsInputHidden) + biasHidden)
-outputKi = f.sigmoidEstimation(np.dot(hiddenLayers, weightsHiddenOutput) + biasOutput)
-
-print("Result Ki:\n", outputKi)
-
-hiddenLayers = f.sigmoidEstimation(np.dot(test[2], weightsInputHidden) + biasHidden)
-outputKu = f.sigmoidEstimation(np.dot(hiddenLayers, weightsHiddenOutput) + biasOutput)
-
-print("Result Ku:\n", outputKu)
-
-hiddenLayers = f.sigmoidEstimation(np.dot(test[3], weightsInputHidden) + biasHidden)
-outputKe = f.sigmoidEstimation(np.dot(hiddenLayers, weightsHiddenOutput) + biasOutput)
-
-print("Result Ke:\n", outputKe)
-
-hiddenLayers = f.sigmoidEstimation(np.dot(test[4], weightsInputHidden) + biasHidden)
-outputKo = f.sigmoidEstimation(np.dot(hiddenLayers, weightsHiddenOutput) + biasOutput)
-
-print("Result Ko:\n", outputKo)
-
-hiddenLayers = f.sigmoidEstimation(np.dot(test[5], weightsInputHidden) + biasHidden)
-outputSa = f.sigmoidEstimation(np.dot(hiddenLayers, weightsHiddenOutput) + biasOutput)
-
-print("Result Sa:\n", outputSa)
-
-hiddenLayers = f.sigmoidEstimation(np.dot(test[6], weightsInputHidden) + biasHidden)
-outputShi = f.sigmoidEstimation(np.dot(hiddenLayers, weightsHiddenOutput) + biasOutput)
-
-print("Result Shi:\n", outputShi)
-
-hiddenLayers = f.sigmoidEstimation(np.dot(test[7], weightsInputHidden) + biasHidden)
-outputSu = f.sigmoidEstimation(np.dot(hiddenLayers, weightsHiddenOutput) + biasOutput)
-
-print("Result Su:\n", outputSu)
-
-hiddenLayers = f.sigmoidEstimation(np.dot(test[8], weightsInputHidden) + biasHidden)
-outputSe = f.sigmoidEstimation(np.dot(hiddenLayers, weightsHiddenOutput) + biasOutput)
-
-print("Result Se:\n", outputSe)
-
-hiddenLayers = f.sigmoidEstimation(np.dot(test[9], weightsInputHidden) + biasHidden)
-outputSo = f.sigmoidEstimation(np.dot(hiddenLayers, weightsHiddenOutput) + biasOutput)
-
-print("Result So:\n", outputSo)
-
+# Print the results
+for i in range(len(test)):
+    hiddenLayers = f.sigmoidEstimation(np.dot(test[i], weightsInputHidden) + biasHidden)
+    output = f.sigmoidEstimation(np.dot(hiddenLayers, weightsHiddenOutput) + biasOutput)
+    print("Result " + xNames[i] + ":\n", output)
 
 # Plotting
-plt.plot(MSE[0], label="Ka")
-plt.plot(MSE[1], label="Ki")
-plt.plot(MSE[2], label="Ku")
-plt.plot(MSE[3], label="Ke")
-plt.plot(MSE[4], label="Ko")
-plt.plot(MSE[5], label="Sa")
-plt.plot(MSE[6], label="Shi")
-plt.plot(MSE[7], label="Su")
-plt.plot(MSE[8], label="Se")
-plt.plot(MSE[9], label="So")
+for i in range(len(MSE)):
+    plt.plot(MSE[i], label=xNames[i])
 
 # Labels
 title = "Learning rate: " + str(learningRate) + ", Iterations: " + str(iterations)
