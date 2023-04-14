@@ -7,29 +7,33 @@ import numpy as np
 print("Training for all characters...")
 
 # Create a list of characters and a list of their corresponding labels
-xNames = ["Ka", "Ki", "Ku", "Ke", "Ko", "Sa", "Shi", "Su", "Se", "So",
-          "Ta", "Chi", "Tsu", "Te", "To", "Na", "Ni", "Nu", "Ne", "No",
-          "Ha", "Hi", "Fu", "He", "Ho", "Ma", "Mi", "Mu", "Me", "Mo",
-          "Ya", "Yu", "Yo", "Ra", "Ri", "Ru", "Re", "Ro", "Wa", "Wo",]
-x = [characters.ka(), characters.ki(), characters.ku(),
-     characters.ke(), characters.ko(), characters.sa(),
-     characters.shi(), characters.su(), characters.se(),
-     characters.so(), characters.ta(), characters.chi(),
-     characters.tsu(), characters.te(), characters.to(),
-     characters.na(), characters.ni(), characters.nu(),
-     characters.ne(), characters.no(), characters.ha(),
-     characters.hi(), characters.fu(), characters.he(),
-     characters.ho(), characters.ma(), characters.mi(),
-     characters.mu(), characters.me(), characters.mo(),
-     characters.ya(), characters.yu(), characters.yo(),
-     characters.ra(), characters.ri(), characters.ru(),
-     characters.re(), characters.ro(), characters.wa(),
-     characters.wo(),]
+xNames = ["A", "I", "U", "E", "O", "Ka", "Ki", "Ku", "Ke", "Ko",
+          "Sa", "Shi", "Su", "Se", "So", "Ta", "Chi", "Tsu", "Te", "To",
+          "Na", "Ni", "Nu", "Ne", "No", "Ha", "Hi", "Fu", "He", "Ho",
+          "Ma", "Mi", "Mu", "Me", "Mo", "Ya", "Yu", "Yo",
+          "Ra", "Ri", "Ru", "Re", "Ro", "Wa", "Wo", "N"]
+x = [ characters.a(), characters.i(), characters.u(),
+      characters.e(), characters.o(), characters.ka(),
+      characters.ki(), characters.ku(), characters.ke(),
+      characters.ko(), characters.sa(), characters.shi(),
+      characters.su(), characters.se(), characters.so(),
+      characters.ta(), characters.chi(), characters.tsu(),
+      characters.te(), characters.to(), characters.na(),
+      characters.ni(), characters.nu(), characters.ne(),
+      characters.no(), characters.ha(), characters.hi(),
+      characters.fu(), characters.he(), characters.ho(),
+      characters.ma(), characters.mi(), characters.mu(),
+      characters.me(), characters.mo(), characters.ya(),
+      characters.yu(), characters.yo(), characters.ra(),
+      characters.ri(), characters.ru(), characters.re(),
+      characters.ro(), characters.wa(), characters.wo(),
+      characters.n()]
+
 targets = []
 
 for i in range(len(x)):
     targets.append([])
-    targets[i] = [0] * 40
+    targets[i] = [0] * len(x)
     targets[i][i] = 1
 
 print("Input:")
@@ -42,9 +46,9 @@ x = np.array(x)
 targets = np.array(targets)
 
 # Define the variables
-inputLayerNeurons, hiddenLayerNeurons, outputLayerNeurons = 25, 25, 40
+inputLayerNeurons, hiddenLayerNeurons, outputLayerNeurons = 25, 25, 46
 learningRate = 0.5
-iterations = 2500
+iterations = 3000
 
 # MSE per input per iteration
 MSE = []
@@ -88,20 +92,20 @@ for i in range(iterations):
 # Testing
 test = [characters.ki(), characters.ma(), characters.fu()]
 testNames = ["Ki", "Ma", "Fu"]
-testTargets = [[0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+testTargets = [[0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
 
 # Print the targets
 print("Targets:")
 for i in range(len(test)):
-    print(xNames[i] + ":", targets[i])
+    print(xNames[i] + ":", testTargets[i])
 
 # Print the results
 for i in range(len(test)):
