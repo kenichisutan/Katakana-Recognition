@@ -2,12 +2,10 @@
 
  A neural-network using numPy implementing backpropagation to recognize Japanese Katakana characters.
 
-Network is able to recognize 5 katakana characters (カキクケコ) rendered as a 5x5 array of binary inputs. 
+Network was originally made to be able to recognize 5 katakana characters (カキクケコ) rendered as a 5x5 array of binary inputs. However, it has since been expanded to cover all 46 characters that exist in the script. Previous versions remain in the repository under a designated folder.
 
-Training of 5 characters
+The final network implements an input layer of 25 neurons, with a hidden layer of 25 neurons, and an output layer of 46 neurons.
 
-<img src="https://imgur.com/fA3Kc2u.jpg" alt="Graph 5 char" title="Graph 5 char">
+<img src="https://i.imgur.com/nHX44MD.png" alt="Graph" title"Graph">
 
-Training of 10 characters
-
-<img src="https://i.imgur.com/uxKfknM.jpg" alt="Graph 10 char" title"Graph 10 char">
+Two main files exist: 1 implementing NumPy and 1 without NumPy. Performance with NumPy increases dramatically and is recommended. However, both are funcitonal and similar in accuracy.
